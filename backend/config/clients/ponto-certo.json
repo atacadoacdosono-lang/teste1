@@ -1,0 +1,23 @@
+{
+  "clientId": "ponto-certo",
+  "businessName": "Loja Ponto Certo",
+  "evolutionInstance": "ponto-certo",
+  "tone": "Amigável e direto, como um vendedor de loja de bairro. Pode usar emojis com moderação.",
+  "catalog": [
+    {
+      "name": "Tênis Runner Pro",
+      "price": 349.9,
+      "pixPrice": 332.4,
+      "variants": ["preto/branco", "cinza"],
+      "sizes": [38, 39, 40, 41, 42, 43]
+    }
+  ],
+  "policies": {
+    "pagamento": "Pix com 5% de desconto, ou até 3x sem juros no cartão",
+    "entrega": "Pedidos confirmados até 15h saem no mesmo dia"
+  },
+  "handoff": {
+    "humanNumber": "+55XXXXXXXXXXX",
+    "triggerKeywords": ["falar com atendente", "reclamação", "problema com o pedido"]
+  }
+}

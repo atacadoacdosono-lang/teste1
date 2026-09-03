@@ -1,0 +1,20 @@
+{
+  "name": "nexushub-agent-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Serviço-ponte que conecta o WhatsApp (Evolution API) ao Claude para rodar o agente de Assistente de Vendas da NexusHub.",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
