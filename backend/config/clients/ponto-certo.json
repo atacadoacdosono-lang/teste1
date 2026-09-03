@@ -9,7 +9,8 @@
       "price": 349.9,
       "pixPrice": 332.4,
       "variants": ["preto/branco", "cinza"],
-      "sizes": [38, 39, 40, 41, 42, 43]
+      "sizes": [38, 39, 40, 41, 42, 43],
+      "photoUrl": ""
     }
   ],
   "policies": {

@@ -12,6 +12,8 @@ antes de construir a estrutura completa (Fase 2 em diante).
 - Responde usando Claude, com base no catálogo e nas políticas do cliente
 - Mantém o histórico da conversa por contato (em memória, dura enquanto o processo roda)
 - Encaminha para atendimento humano quando o cliente pede ou usa palavras-chave configuradas
+- Manda a foto de um produto junto com a resposta, quando o produto perguntado
+  tem `photoUrl` cadastrado (veja "Fotos de produto" abaixo)
 
 ## O que ainda não existe (de propósito, é Fase 1)
 
@@ -75,6 +77,28 @@ https://SEU-TUNEL-OU-DOMINIO/webhook/evolution/ponto-certo?secret=SEU_WEBHOOK_SE
 
 Troque `ponto-certo` pelo `clientId` do seu cliente piloto (o nome do
 arquivo JSON, sem `.json`).
+
+## Fotos de produto
+
+Cada item do `catalog` no config do cliente pode ter um campo `photoUrl` com
+um link direto pra imagem (hospedada em qualquer lugar público — site
+próprio, Google Drive com link público, Instagram, etc.). Exemplo:
+
+```json
+{ "name": "Sonhos Real", "photoUrl": "https://exemplo.com/fotos/sonhos-real.jpg", "priceRange": "...", "details": "..." }
+```
+
+Quando o cliente pergunta sobre um produto que tem `photoUrl`, o agente manda
+a foto (com a resposta como legenda) em vez de só texto — veja
+`src/lib/catalogMatch.js`. Isso usa uma correspondência simples pelo nome do
+produto na mensagem do cliente (sem sinônimos ou referências indiretas tipo
+"aquele colchão que você mostrou") — funciona bem para a Fase 1, mas é um
+heurístico, não a IA decidindo; uma tool call real do Claude escolhendo o
+produto é uma melhoria natural pra Fase 2.
+
+O envio de imagem em si (`sendImage` em `evolutionClient.js`) tem a mesma
+ressalva do `sendText`: confira o endpoint contra a sua instância real antes
+de produção.
 
 ## Aviso importante sobre a integração com a Evolution API
 

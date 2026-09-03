@@ -28,6 +28,23 @@ async function sendText(instanceName, toNumber, text) {
   );
 }
 
+// Envia uma imagem (com legenda opcional) pelo WhatsApp através da Evolution API —
+// usado quando o cliente pergunta sobre um produto que tem foto cadastrada.
+//
+// Mesma ressalva do sendText: endpoint e formato seguem a documentação pública
+// da Evolution API v2 (POST /message/sendMedia/{instance}, body { number,
+// mediatype, media, caption }). Confira contra a sua instância real antes de
+// produção.
+async function sendImage(instanceName, toNumber, imageUrl, caption) {
+  assertConfigured();
+  const url = `${BASE_URL}/message/sendMedia/${instanceName}`;
+  await axios.post(
+    url,
+    { number: toNumber, mediatype: "image", media: imageUrl, caption: caption || "" },
+    { headers: { apikey: API_KEY } }
+  );
+}
+
 // Extrai remetente e texto de um evento de webhook "messages.upsert" da
 // Evolution API. Retorna null quando o evento não é uma mensagem de texto
 // recebida (mensagem enviada pelo próprio agente, mídia, outro tipo de evento).
@@ -52,4 +69,4 @@ function parseIncomingMessage(webhookBody) {
   };
 }
 
-module.exports = { sendText, parseIncomingMessage };
+module.exports = { sendText, sendImage, parseIncomingMessage };

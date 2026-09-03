@@ -5,7 +5,8 @@ const { loadClientConfig } = require("./config/clientConfig");
 const { buildSystemPrompt } = require("./lib/promptBuilder");
 const { getHistory, appendTurn } = require("./lib/conversationStore");
 const { generateReply } = require("./integrations/claudeClient");
-const { sendText, parseIncomingMessage } = require("./integrations/evolutionClient");
+const { sendText, sendImage, parseIncomingMessage } = require("./integrations/evolutionClient");
+const { findCatalogPhoto } = require("./lib/catalogMatch");
 
 const app = express();
 app.use(express.json({ limit: "2mb" }));
@@ -48,7 +49,14 @@ app.post("/webhook/evolution/:clientId", async (req, res) => {
     appendTurn(clientId, incoming.from, "user", incoming.text);
     appendTurn(clientId, incoming.from, "assistant", reply);
 
-    await sendText(clientConfig.evolutionInstance, incoming.from, reply);
+    // Se o cliente perguntou sobre um produto que tem foto cadastrada, manda
+    // a foto com a resposta como legenda; senão, manda só o texto normal.
+    const photoMatch = findCatalogPhoto(clientConfig, incoming.text);
+    if (photoMatch) {
+      await sendImage(clientConfig.evolutionInstance, incoming.from, photoMatch.photoUrl, reply);
+    } else {
+      await sendText(clientConfig.evolutionInstance, incoming.from, reply);
+    }
   } catch (error) {
     console.error("Erro ao processar mensagem recebida:", error);
   }
