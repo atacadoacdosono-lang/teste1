@@ -30,8 +30,10 @@ function buildSystemPrompt(clientConfig) {
       const parts = [item.name];
       if (item.price != null) parts.push(`R$ ${formatBRL(item.price)}`);
       if (item.pixPrice != null) parts.push(`R$ ${formatBRL(item.pixPrice)} no Pix`);
+      if (item.priceRange) parts.push(item.priceRange);
       if (item.variants) parts.push(`opções: ${item.variants.join(", ")}`);
       if (item.sizes) parts.push(`tamanhos: ${item.sizes.join(", ")}`);
+      if (item.details) parts.push(item.details);
       lines.push(`- ${parts.join(" — ")}`);
     });
   }
@@ -44,7 +46,10 @@ function buildSystemPrompt(clientConfig) {
     });
   }
 
-  if (clientConfig.handoff && clientConfig.handoff.triggerKeywords) {
+  if (clientConfig.handoff && clientConfig.handoff.instructions) {
+    lines.push("");
+    lines.push(`Encaminhe para um atendente humano quando: ${clientConfig.handoff.instructions}`);
+  } else if (clientConfig.handoff && clientConfig.handoff.triggerKeywords && clientConfig.handoff.triggerKeywords.length) {
     lines.push("");
     lines.push(
       `Se o cliente pedir para falar com um atendente humano, ou usar palavras como "${clientConfig.handoff.triggerKeywords.join('", "')}", avise que vai encaminhar para a equipe e pare de tentar resolver sozinho.`
