@@ -10,6 +10,8 @@ financeiro, estoque) planejados no roadmap.
   para rodar o agente de verdade. Veja `backend/README.md` para como
   configurar e rodar. Estamos na Fase 1 do roadmap: piloto manual com um
   cliente, antes de automatizar onboarding e cobrança.
+- `deploy/` — docker-compose e passo a passo para subir a Evolution API e o
+  backend numa VPS de verdade. Veja `deploy/README.md`.
 
 A landing page e o funil de vendas (quiz, captura de leads, planos) vivem
 como Artifact publicado, fora deste repositório.
