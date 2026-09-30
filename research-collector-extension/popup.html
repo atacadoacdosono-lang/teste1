@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Research Collector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>Research Collector</h1>
+    <span id="count" class="muted"></span>
+  </header>
+
+  <section class="card">
+    <div id="current-title" class="current-title"></div>
+    <textarea id="selection" rows="3" placeholder="Trecho selecionado (opcional)"></textarea>
+    <textarea id="note" rows="2" placeholder="Sua anotação (opcional)"></textarea>
+    <input id="tags" type="text" placeholder="Tags separadas por vírgula (opcional)">
+    <button id="save" class="primary">Salvar página atual</button>
+    <div id="status" class="status" role="status"></div>
+  </section>
+
+  <section>
+    <input id="search" type="search" placeholder="Buscar na coleção…">
+    <ul id="list"></ul>
+    <p id="empty" class="muted empty">Nada coletado ainda.</p>
+  </section>
+
+  <footer>
+    <button data-format="json">JSON</button>
+    <button data-format="csv">CSV</button>
+    <button data-format="md">Markdown</button>
+    <button id="clear" class="danger">Limpar</button>
+  </footer>
+
+  <script src="storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

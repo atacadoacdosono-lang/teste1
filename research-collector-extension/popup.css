@@ -1,0 +1,111 @@
+:root {
+  --bg: #ffffff;
+  --fg: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --card: #f9fafb;
+  --accent: #2563eb;
+  --danger: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111827;
+    --fg: #f3f4f6;
+    --muted: #9ca3af;
+    --border: #374151;
+    --card: #1f2937;
+    --accent: #3b82f6;
+    --danger: #f87171;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 380px;
+  margin: 0;
+  padding: 12px;
+  font: 13px/1.4 system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+header { display: flex; justify-content: space-between; align-items: baseline; }
+h1 { font-size: 15px; margin: 0 0 8px; }
+.muted { color: var(--muted); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.current-title {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+textarea, input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  resize: vertical;
+}
+
+button {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  font: inherit;
+}
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.danger { color: var(--danger); margin-left: auto; }
+
+.status { min-height: 1em; color: var(--accent); font-size: 12px; }
+
+#list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+#list li {
+  border-bottom: 1px solid var(--border);
+  padding: 6px 0;
+  position: relative;
+}
+
+#list a { color: var(--accent); text-decoration: none; font-weight: 600; word-break: break-word; }
+#list a:hover { text-decoration: underline; }
+#list blockquote { margin: 4px 0; padding-left: 8px; border-left: 3px solid var(--border); }
+#list .meta { font-size: 11px; color: var(--muted); }
+#list .remove {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  border: none;
+  padding: 0 4px;
+  color: var(--muted);
+}
+#list .remove:hover { color: var(--danger); }
+
+.empty { text-align: center; }
+
+footer { display: flex; gap: 6px; margin-top: 10px; }
