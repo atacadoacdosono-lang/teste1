@@ -5,6 +5,9 @@
 
 export const site = {
   url: "https://www.ejemplo.com/", // URL pública final (canonical / Open Graph)
+  outDir: ".", // carpeta donde se generan las páginas de este idioma
+  assetPrefix: "", // ruta hasta la carpeta assets/ desde las páginas ("" en la raíz, "../" en una subcarpeta)
+  pages: { quiz: "index.html", landing: "salmos.html", thanks: "gracias.html" },
   lang: "es-MX",
   locale: "es_MX",
   ogImage: "assets/img/familia-escribiendo-1400.webp",
@@ -50,7 +53,7 @@ export const site = {
   // (Content-Type text/plain para evitar bloqueos CORS). Vacío = no se envía (solo eventos de analítica).
   quiz: {
     webhookUrl: "",
-    landingPath: "salmos.html", // página de venta a la que lleva el resultado
+    landingPath: "salmos.html", // página de venta a la que lleva el resultado (igual a pages.landing)
   },
 
   legal: {

@@ -2,7 +2,7 @@
 // Los textos NO se editan aquí: edítalos en content.js.
 
 import { icon, doodle } from "./icons.js";
-import { site } from "./site.config.js";
+import { site } from "./site.js";
 
 const list = (items, fn) => items.map(fn).join("");
 
@@ -202,7 +202,7 @@ export const Bonuses = (c) => `
         <figure class="bonuses__media reveal" data-placeholder="foto-bonos">
           ${Picture(c.image, { sizes: "(min-width: 960px) 45vw, 100vw" })}
           <span class="burst" aria-hidden="true"><span>${c.sticker}</span></span>
-          <figcaption class="caption">Imagen ilustrativa.</figcaption>
+          <figcaption class="caption">${c.illustrative}</figcaption>
         </figure>
         <ul class="bonus-list" role="list">
           ${list(
@@ -283,8 +283,8 @@ export const Offer = (c, g) => `
 export const Guarantee = (c) => `
       <aside class="guarantee reveal" aria-labelledby="guarantee-title">
         <span class="guarantee__seal" aria-hidden="true">
-          <svg class="guarantee__ring" viewBox="0 0 100 100"><defs><path id="seal-path" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text textLength="232" lengthAdjust="spacing"><textPath href="#seal-path" textLength="232">GARANTÍA ✦ 7 DÍAS ✦ GARANTÍA ✦ 7 DÍAS ✦</textPath></text></svg>
-          <span class="guarantee__days"><strong>7</strong><small>días</small></span>
+          <svg class="guarantee__ring" viewBox="0 0 100 100"><defs><path id="seal-path" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text textLength="232" lengthAdjust="spacing"><textPath href="#seal-path" textLength="232">${c.sealText}</textPath></text></svg>
+          <span class="guarantee__days"><strong>7</strong><small>${c.sealDays}</small></span>
         </span>
         <div>
           <h3 class="h3" id="guarantee-title">${c.title}</h3>
@@ -319,7 +319,7 @@ export const LeadForm = (c, endpoint) => {
         <h2 class="h3" id="lead-title">${c.title}</h2>
         <p>${c.text}</p>
         <div class="lead__row">
-          <label class="sr-only" for="lead-email">Correo electrónico</label>
+          <label class="sr-only" for="lead-email">${c.emailLabel}</label>
           <input id="lead-email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="${c.placeholder}">
           <button class="btn btn--leaf" type="submit"><span class="btn__label">${c.button}</span></button>
         </div>

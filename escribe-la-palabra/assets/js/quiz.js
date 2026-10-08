@@ -192,6 +192,8 @@
   function sendLead(ev) {
     var payload = {
       source: "quiz_escribe_la_palabra",
+      locale: data.locale || "",
+      currency: data.currency || "",
       created_at: new Date().toISOString(),
       parent_name: state.lead.parentName || "",
       child_name: state.lead.childName || "",

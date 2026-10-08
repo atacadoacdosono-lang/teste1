@@ -36,7 +36,7 @@ export const QuizPage = (q, { brand, site }) => `
         </div>
         <figure class="qintro__media">
           <div class="hero__frame">${Picture(q.intro.image, { eager: true, cls: "qintro__img" })}</div>
-          <span class="sticker sticker--1">5 preguntas ✦ 1 min</span>
+          <span class="sticker sticker--1">${q.intro.sticker}</span>
         </figure>
       </div>
     </section>
@@ -95,4 +95,4 @@ export const QuizPage = (q, { brand, site }) => `
       <div class="container narrow" data-result></div>
     </section>
   </main>
-  <script type="application/json" id="quiz-data">${safeJson({ quiz: q, webhookUrl: site.quiz.webhookUrl, landingPath: site.quiz.landingPath, passthroughParams: site.passthroughParams, checkoutUrl: site.checkoutUrl })}</script>`;
+  <script type="application/json" id="quiz-data">${safeJson({ quiz: q, locale: site.lang, currency: site.product.currency, webhookUrl: site.quiz.webhookUrl, landingPath: site.quiz.landingPath, passthroughParams: site.passthroughParams, checkoutUrl: site.checkoutUrl })}</script>`;

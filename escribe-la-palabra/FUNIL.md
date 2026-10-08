@@ -1,5 +1,10 @@
 # Funil de aquisição — Quiz → Lead → Oferta
 
+O mesmo funil existe em dois idiomas: México na raiz (`index.html`) e Brasil em `br/` (`br/index.html`).
+Os textos de cada um ficam em `src/locales/es-MX/` e `src/locales/pt-BR/`. O payload do webhook inclui
+`locale` (`es-MX` ou `pt-BR`) e `currency` (`MXN` ou `BRL`) para separar os leads no CRM. Os valores das respostas
+e as tags são iguais nos dois países (ex.: `lead_caliente`), para relatórios unificados.
+
 ```
 Anúncio / orgânico
       │  (utm_*, fbclid, gclid)
@@ -21,8 +26,8 @@ Resultado personalizado (perfil, ritmo, foco, motivos)
 
 | O quê | Arquivo |
 |---|---|
-| Perguntas, opções, pontos, tags, textos do resultado, produtos do ecossistema | `src/quiz.content.js` |
-| Webhook do CRM e página de venda de destino | `src/site.config.js` → `quiz` |
+| Perguntas, opções, pontos, tags, textos do resultado, produtos do ecossistema | `src/locales/<idioma>/quiz.content.js` |
+| Webhook do CRM e página de venda de destino | `src/locales/<idioma>/site.config.js` → `quiz` |
 | Visual | `assets/css/styles.css` (seção QUIZ) |
 | Lógica | `assets/js/quiz.js` |
 
@@ -93,4 +98,5 @@ Dica para Meta Ads: otimize campanhas de topo para `Lead` e crie públicos perso
 ## Privacidade (México)
 
 O formulário exige consentimento e mostra o link do Aviso de privacidad (LFPDPPP).
-Configure a URL real em `src/site.config.js` → `legal.privacyUrl` antes de publicar.
+Configure a URL real em `src/locales/<idioma>/site.config.js` → `legal.privacyUrl` antes de publicar.
+No Brasil, a página usa "Política de Privacidade" e cita a LGPD no aviso do formulário.

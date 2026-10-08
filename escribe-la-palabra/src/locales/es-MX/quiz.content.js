@@ -23,6 +23,7 @@ export const quiz = {
       "Responde 5 preguntas rápidas y recibe una recomendación personalizada para practicar la letra en casa, con versículos de la Biblia, en pocos minutos al día.",
     cta: "EMPEZAR EL QUIZ",
     bullets: ["5 preguntas", "1 minuto", "Gratis"],
+    sticker: "5 preguntas ✦ 1 min",
     image: {
       base: "assets/img/familia-escribiendo",
       width: 1400,

@@ -1,5 +1,5 @@
 // Estructura del documento HTML: <head>, SEO y fragmentos de analítica.
-import { site } from "./site.config.js";
+import { site } from "./site.js";
 
 const abs = (path) => new URL(path, site.url).href;
 
@@ -70,13 +70,13 @@ export const Document = ({ title, description, path = "", body, page, robots = "
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@700&family=Andika&display=swap">
   ${preload}
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="${site.assetPrefix}assets/css/styles.css">
 
   <script>window.SITE_CONFIG=${runtimeConfig()};window.dataLayer=window.dataLayer||[];</script>${gtmHead(site.tracking.gtmId)}${ga4(site.tracking.ga4Id)}${metaPixel(site.tracking.metaPixelId)}
 </head>
 <body data-page="${page}">${gtmBody(site.tracking.gtmId)}
 ${body}
-  <script src="assets/js/main.js" defer></script>${scripts}
+  <script src="${site.assetPrefix}assets/js/main.js" defer></script>${scripts}
 </body>
 </html>
 `;

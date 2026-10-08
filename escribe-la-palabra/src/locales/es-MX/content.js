@@ -133,6 +133,7 @@ export const content = {
       height: 1045,
       alt: "Tarjetas ilustradas con versículos para memorizar sobre una mesa de madera",
     },
+    illustrative: "Imagen ilustrativa.",
     items: [
       { tag: "Bono 1", title: "52 tarjetas de versículos", text: "Para recortar, memorizar y repasar durante todo el año.", icon: "cards" },
       { tag: "Bono 2", title: "Cuaderno de oración para niños", text: "Páginas para que tu hijo escriba y dibuje sus oraciones.", icon: "notebook" },
@@ -189,6 +190,8 @@ export const content = {
   },
 
   guarantee: {
+    sealText: "GARANTÍA ✦ 7 DÍAS ✦ GARANTÍA ✦ 7 DÍAS ✦",
+    sealDays: "días",
     title: "Garantía de 7 días",
     text: "Si el material no es lo que esperabas, puedes solicitar el reembolso dentro de los 7 días posteriores a tu compra, de acuerdo con los términos de la plataforma de pago.",
   },
@@ -233,6 +236,7 @@ export const content = {
   },
 
   lead: {
+    emailLabel: "Correo electrónico",
     title: "¿Aún lo estás pensando?",
     text: "Déjanos tu correo y te enviamos más información sobre el programa.",
     placeholder: "tu@correo.com",

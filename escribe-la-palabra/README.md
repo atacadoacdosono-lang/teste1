@@ -1,6 +1,11 @@
 # Escribe la Palabra — Landing page
 
-Embudo mobile-first (español, México) para **Escribe la Palabra — Salmos**:
+Embudo mobile-first en dos idiomas:
+
+- **México (es-MX)** → raíz del sitio, textos en `src/locales/es-MX/`.
+- **Brasil (pt-BR)** → carpeta `br/` (`br/index.html`, `br/salmos.html`, `br/obrigado.html`), textos en `src/locales/pt-BR/`. El precio R$ 47 es provisional.
+
+Páginas de cada idioma:
 
 - `index.html` → **quiz** de 5 preguntas (página inicial, captura y calificación del lead). Ver [`FUNIL.md`](FUNIL.md).
 - `salmos.html` → **página de venta** (se personaliza cuando la persona llega desde el quiz).
@@ -10,13 +15,13 @@ Es un sitio estático: no necesita servidor ni dependencias. Se puede publicar e
 ## Estructura
 
 ```
-src/site.config.js   → checkout, precio, IDs de analítica, enlaces legales, SEO
-src/content.js       → TODOS los textos de la página (editar aquí)
+src/locales/<idioma>/site.config.js → checkout, precio, IDs de analítica, enlaces legales, SEO
+src/locales/<idioma>/content.js → TODOS los textos de la página (editar aquí)
 src/components.js    → componentes (Hero, Problem, Mechanism, Preview, Included, Bonuses,
                        Audience, Testimonials, Offer, Guarantee, Faq, LeadForm, FinalCta, StickyCta, Footer)
 src/document.js      → <head>, SEO, Open Graph, Meta Pixel / GA4 / GTM
 src/icons.js         → íconos SVG
-src/quiz.content.js  → textos, preguntas, puntos, etiquetas y rutas del quiz
+src/locales/<idioma>/quiz.content.js → textos, preguntas, puntos, etiquetas y rutas del quiz
 src/quiz.components.js → estructura del quiz
 assets/js/quiz.js    → lógica del quiz (calificación, webhook, resultado)
 build.mjs            → genera index.html (quiz), salmos.html y gracias.html
@@ -35,8 +40,8 @@ No edites los `.html` a mano: se sobrescribe en cada build.
 
 ## Antes de publicar (pendientes)
 
-- [ ] `quiz.webhookUrl` (Make, Zapier, n8n, CRM) en `src/site.config.js` para recibir los leads del quiz.
-- [ ] `checkoutUrl` real en `src/site.config.js` (mientras diga `TU-CHECKOUT`, los botones llevan a la oferta).
+- [ ] `quiz.webhookUrl` (Make, Zapier, n8n, CRM) en `src/locales/<idioma>/site.config.js` para recibir los leads del quiz.
+- [ ] `checkoutUrl` real en `src/locales/<idioma>/site.config.js` (mientras diga `TU-CHECKOUT`, los botones llevan a la oferta).
 - [ ] IDs de analítica en `tracking` (`gtmId`, `ga4Id`, `metaPixelId`).
 - [ ] `url` pública final del sitio (canonical y Open Graph).
 - [ ] Aviso de privacidad, términos y correo de contacto (`legal`).
