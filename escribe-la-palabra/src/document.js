@@ -46,7 +46,7 @@ const metaPixel = (id) =>
     : `
   <!-- Meta Pixel: agrega tu ID en src/site.config.js (tracking.metaPixelId) -->`;
 
-export const Document = ({ title, description, path = "", body, page, robots = "index, follow", preload = "" }) => `<!doctype html>
+export const Document = ({ title, description, path = "", body, page, robots = "index, follow", preload = "", scripts = "" }) => `<!doctype html>
 <html lang="${site.lang}">
 <head>
   <meta charset="utf-8">
@@ -76,7 +76,7 @@ export const Document = ({ title, description, path = "", body, page, robots = "
 </head>
 <body data-page="${page}">${gtmBody(site.tracking.gtmId)}
 ${body}
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js" defer></script>${scripts}
 </body>
 </html>
 `;

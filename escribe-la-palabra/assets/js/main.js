@@ -59,7 +59,18 @@
       ecommerce: gaParams,
     });
   }
-  window.ELP = { track: track };
+  // Eventos personalizados (quiz, video): Meta trackCustom + GA4 + dataLayer
+  function trackCustom(name, params) {
+    params = params || {};
+    try { if (typeof window.fbq === "function") window.fbq("trackCustom", name, params); } catch (e) {}
+    try { if (typeof window.gtag === "function") window.gtag("event", name.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase(), params); } catch (e) {}
+    window.dataLayer = window.dataLayer || [];
+    var payload = { event: name };
+    for (var k in params) payload[k] = params[k];
+    window.dataLayer.push(payload);
+  }
+
+  window.ELP = { track: track, trackCustom: trackCustom };
 
   // ── Checkout ─────────────────────────────────────────────
   var checkoutReady = cfg.checkoutUrl && cfg.checkoutUrl.indexOf("TU-CHECKOUT") === -1;
@@ -73,19 +84,33 @@
     return url.toString();
   }
 
-  document.querySelectorAll("[data-checkout]").forEach(function (el) {
-    if (checkoutReady) {
-      el.href = checkoutHref();
-    } else {
-      el.href = "#oferta";
-    }
+  function bindCheckout(el) {
+    el.href = checkoutReady ? checkoutHref() : "#oferta";
     el.addEventListener("click", function () {
       if (!checkoutReady) {
         console.warn("[Escribe la Palabra] Configura checkoutUrl en src/site.config.js y ejecuta node build.mjs");
       }
       track("InitiateCheckout", { cta_location: el.getAttribute("data-cta-location") });
     });
-  });
+  }
+  window.ELP.bindCheckout = bindCheckout;
+  document.querySelectorAll("[data-checkout]").forEach(bindCheckout);
+
+  // ── Personalización (viene del quiz) ─────────────────────
+  // Lee ?hijo=…&edad=… de la URL o lo guardado por el quiz y muestra "Plan recomendado para …".
+  var personal = document.querySelector("[data-personal]");
+  if (personal) {
+    var q = new URLSearchParams(window.location.search);
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem("elp_quiz") || "{}") || {}; } catch (e) {}
+    var child = (q.get("hijo") || saved.childName || "").trim().slice(0, 30);
+    var age = (q.get("edad") || saved.ageLabel || "").trim().slice(0, 30);
+    if (child || age) {
+      var text = personal.getAttribute(child ? "data-with-name" : "data-generic");
+      personal.querySelector("[data-personal-text]").textContent = text.replace("{hijo}", child).replace("{edad}", age).replace(/ · $/, "");
+      personal.hidden = false;
+    }
+  }
 
   // ── Sticky CTA (móvil) ───────────────────────────────────
   var sticky = document.querySelector("[data-sticky]");
@@ -140,9 +165,7 @@
       }
       vsl.innerHTML = "";
       vsl.appendChild(player);
-      window.dataLayer.push({ event: "VideoPlay", video_src: src });
-      try { if (typeof window.fbq === "function") window.fbq("trackCustom", "VideoPlay"); } catch (e) {}
-      try { if (typeof window.gtag === "function") window.gtag("event", "video_start", { video_url: src }); } catch (e) {}
+      trackCustom("VideoPlay", { video_src: src });
     });
   }
 

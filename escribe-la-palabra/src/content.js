@@ -20,6 +20,11 @@ export const content = {
     microcopy: "Pago único de MX$149 · Acceso digital inmediato",
     chips: ["PDF imprimible", "15 min al día", "12 semanas", "Sin pantallas"],
     stickers: ["¡Solo 15 min al día!", "PDF imprimible"],
+    // Banner que aparece cuando la persona llega desde el quiz. {hijo} y {edad} se reemplazan.
+    personal: {
+      withName: "Plan recomendado para {hijo} · {edad}",
+      generic: "Tu plan recomendado · {edad}",
+    },
     image: {
       base: "assets/img/familia-escribiendo", // usa -800.webp y -1400.webp
       width: 1400,

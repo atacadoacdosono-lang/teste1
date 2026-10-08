@@ -1,6 +1,10 @@
 # Escribe la Palabra — Landing page
 
-Landing de venta (mobile-first, en español para México) para **Escribe la Palabra — Salmos**.
+Embudo mobile-first (español, México) para **Escribe la Palabra — Salmos**:
+
+- `index.html` → **quiz** de 5 preguntas (página inicial, captura y calificación del lead). Ver [`FUNIL.md`](FUNIL.md).
+- `salmos.html` → **página de venta** (se personaliza cuando la persona llega desde el quiz).
+- `gracias.html` → página de gracias (evento Purchase).
 Es un sitio estático: no necesita servidor ni dependencias. Se puede publicar en Vercel, Netlify, Hostinger, etc.
 
 ## Estructura
@@ -12,7 +16,10 @@ src/components.js    → componentes (Hero, Problem, Mechanism, Preview, Include
                        Audience, Testimonials, Offer, Guarantee, Faq, LeadForm, FinalCta, StickyCta, Footer)
 src/document.js      → <head>, SEO, Open Graph, Meta Pixel / GA4 / GTM
 src/icons.js         → íconos SVG
-build.mjs            → genera index.html y gracias.html
+src/quiz.content.js  → textos, preguntas, puntos, etiquetas y rutas del quiz
+src/quiz.components.js → estructura del quiz
+assets/js/quiz.js    → lógica del quiz (calificación, webhook, resultado)
+build.mjs            → genera index.html (quiz), salmos.html y gracias.html
 assets/css/styles.css→ estilos (colores y fuentes en :root)
 assets/js/main.js    → eventos, checkout, CTA fijo en móvil, FAQ, formulario de lead
 assets/img/          → imágenes (webp 800 / 1400)
@@ -21,13 +28,14 @@ assets/img/          → imágenes (webp 800 / 1400)
 Después de editar cualquier archivo de `src/`:
 
 ```bash
-node build.mjs          # regenera index.html y gracias.html (Node 18+)
+node build.mjs          # regenera index.html, salmos.html y gracias.html (Node 18+)
 ```
 
-No edites `index.html` a mano: se sobrescribe en cada build.
+No edites los `.html` a mano: se sobrescribe en cada build.
 
 ## Antes de publicar (pendientes)
 
+- [ ] `quiz.webhookUrl` (Make, Zapier, n8n, CRM) en `src/site.config.js` para recibir los leads del quiz.
 - [ ] `checkoutUrl` real en `src/site.config.js` (mientras diga `TU-CHECKOUT`, los botones llevan a la oferta).
 - [ ] IDs de analítica en `tracking` (`gtmId`, `ga4Id`, `metaPixelId`).
 - [ ] `url` pública final del sitio (canonical y Open Graph).

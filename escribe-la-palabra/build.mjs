@@ -1,10 +1,12 @@
-// Genera index.html y gracias.html a partir de src/.
+// Genera index.html (quiz), salmos.html (página de venta) y gracias.html a partir de src/.
 // Uso:  node build.mjs
 import { writeFileSync } from "node:fs";
 import { site } from "./src/site.config.js";
 import { content as c } from "./src/content.js";
 import { Document } from "./src/document.js";
 import * as UI from "./src/components.js";
+import { quiz } from "./src/quiz.content.js";
+import { QuizPage } from "./src/quiz.components.js";
 
 const strip = (html) => html.replace(/<[^>]+>/g, "");
 
@@ -36,9 +38,10 @@ const faqLd = {
 
 const heroImg = c.hero.image.base;
 
-const home = Document({
+const landing = Document({
   title: site.seo.title,
   description: site.seo.description,
+  path: site.quiz.landingPath,
   page: "landing",
   preload: `<link rel="preload" as="image" href="${heroImg}-1400.webp" imagesrcset="${heroImg}-800.webp 800w, ${heroImg}-1400.webp 1400w" imagesizes="(min-width: 960px) 50vw, 100vw" fetchpriority="high">`,
   body: `
@@ -81,6 +84,15 @@ const thanks = Document({
   ${UI.Footer(c.footer, site.legal, c.brand)}`,
 });
 
-writeFileSync(new URL("./index.html", import.meta.url), home);
+const quizPage = Document({
+  title: quiz.seo.title,
+  description: quiz.seo.description,
+  page: "quiz",
+  body: QuizPage(quiz, { brand: c.brand, site }),
+  scripts: `\n  <script src="assets/js/quiz.js" defer></script>`,
+});
+
+writeFileSync(new URL("./index.html", import.meta.url), quizPage);
+writeFileSync(new URL(`./${site.quiz.landingPath}`, import.meta.url), landing);
 writeFileSync(new URL("./gracias.html", import.meta.url), thanks);
-console.log("✔ index.html y gracias.html generados");
+console.log(`✔ index.html (quiz), ${site.quiz.landingPath} (venta) y gracias.html generados`);

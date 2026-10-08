@@ -45,6 +45,14 @@ export const site = {
     endpoint: "",
   },
 
+  // Quiz (index.html): a dónde se envían los leads calificados.
+  // Webhook de Make, Zapier, n8n, GoHighLevel, ActiveCampaign, etc. Recibe POST con cuerpo JSON
+  // (Content-Type text/plain para evitar bloqueos CORS). Vacío = no se envía (solo eventos de analítica).
+  quiz: {
+    webhookUrl: "",
+    landingPath: "salmos.html", // página de venta a la que lleva el resultado
+  },
+
   legal: {
     privacyUrl: "#aviso-de-privacidad", // reemplazar con la URL real del aviso de privacidad
     termsUrl: "#terminos", // reemplazar con la URL real de términos y condiciones

@@ -59,6 +59,7 @@ export const Hero = (c, vsl) => `
     <div class="container hero__grid">
       <div class="hero__copy">
         <p class="pill">${icon("sparkle")}${c.eyebrow}</p>
+        <p class="personal" data-personal data-with-name="${c.personal.withName}" data-generic="${c.personal.generic}" hidden>${icon("check")}<span data-personal-text></span></p>
         <h1 class="h1" id="hero-title">${c.title}</h1>
         <p class="hero__sub">${c.subtitle}</p>
       </div>
