@@ -1,0 +1,29 @@
+{
+  "name": "loja-pagamentos",
+  "version": "1.0.0",
+  "description": "Checkout próprio com Pix e cartão usando Mercado Pago",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atacadoacdosono-lang/teste1.git"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/atacadoacdosono-lang/teste1/issues"
+  },
+  "homepage": "https://github.com/atacadoacdosono-lang/teste1#readme",
+  "dependencies": {
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1",
+    "mercadopago": "^3.6.1"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}

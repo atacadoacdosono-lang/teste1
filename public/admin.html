@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel de Pedidos</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <main style="max-width: 1000px">
+    <h1>Painel de pedidos</h1>
+
+    <section class="cartao-secao">
+      <label>Senha do painel <input id="senha" type="password"></label>
+      <button id="btn-entrar">Ver pedidos</button>
+      <p id="mensagem" class="mensagem erro"></p>
+    </section>
+
+    <section class="cartao-secao" id="area-pedidos" hidden>
+      <p id="resumo"></p>
+      <div style="overflow-x: auto">
+        <table>
+          <thead>
+            <tr><th>Data</th><th>Cliente</th><th>Itens</th><th>Forma</th><th>Total</th><th>Status</th></tr>
+          </thead>
+          <tbody id="lista"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const reais = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const escapar = (t) => String(t).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+
+    async function carregar() {
+      const resposta = await fetch('/api/admin/pedidos', {
+        headers: { 'x-admin-password': document.getElementById('senha').value },
+      });
+      const dados = await resposta.json();
+      if (!resposta.ok) {
+        document.getElementById('mensagem').textContent = dados.erro;
+        return;
+      }
+      document.getElementById('mensagem').textContent = '';
+
+      const pagos = dados.filter((p) => p.status === 'pago');
+      const faturado = pagos.reduce((s, p) => s + p.total, 0);
+      document.getElementById('resumo').innerHTML =
+        `<strong>${pagos.length}</strong> pedidos pagos — <strong>${reais(faturado)}</strong> recebidos.`;
+
+      document.getElementById('lista').innerHTML = dados.map((p) => `
+        <tr>
+          <td>${new Date(p.criadoEm).toLocaleString('pt-BR')}</td>
+          <td>${escapar(p.cliente.nome)}<br><small>${escapar(p.cliente.email)}</small></td>
+          <td>${p.itens.map((i) => `${i.quantidade}x ${escapar(i.nome)}`).join('<br>')}</td>
+          <td>${p.metodo === 'pix' ? 'Pix' : 'Cartão'}</td>
+          <td>${reais(p.total)}</td>
+          <td class="status-${p.status}">${p.status}</td>
+        </tr>`).join('');
+      document.getElementById('area-pedidos').hidden = false;
+    }
+
+    document.getElementById('btn-entrar').addEventListener('click', carregar);
+  </script>
+</body>
+</html>

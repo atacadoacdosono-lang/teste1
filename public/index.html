@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minha Loja</title>
+  <link rel="stylesheet" href="estilo.css">
+  <!-- SDK oficial do Mercado Pago: monta o formulário seguro de cartão -->
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body>
+  <main>
+    <h1>Minha Loja</h1>
+
+    <section class="cartao-secao">
+      <h2>1. Escolha os produtos</h2>
+      <div id="produtos"></div>
+      <p class="total">Total: <strong id="total">R$ 0,00</strong></p>
+    </section>
+
+    <section class="cartao-secao">
+      <h2>2. Seus dados</h2>
+      <label>Nome <input id="nome" autocomplete="name"></label>
+      <label>E-mail <input id="email" type="email" autocomplete="email"></label>
+      <label>CPF <input id="cpf" inputmode="numeric" placeholder="000.000.000-00"></label>
+    </section>
+
+    <section class="cartao-secao">
+      <h2>3. Forma de pagamento</h2>
+      <div class="botoes">
+        <button id="btn-pix">Pagar com Pix</button>
+        <button id="btn-cartao" class="secundario">Pagar com cartão</button>
+      </div>
+
+      <p id="mensagem" class="mensagem"></p>
+
+      <!-- Tela do Pix -->
+      <div id="area-pix" hidden>
+        <p>Abra o app do seu banco e escaneie o QR Code:</p>
+        <img id="pix-imagem" alt="QR Code Pix">
+        <p>Ou use o Pix copia e cola:</p>
+        <textarea id="pix-codigo" readonly rows="3"></textarea>
+        <button id="btn-copiar" class="secundario">Copiar código</button>
+        <p class="aguardando" id="pix-status">Aguardando pagamento…</p>
+      </div>
+
+      <!-- Formulário de cartão (montado pelo Mercado Pago) -->
+      <div id="area-cartao"></div>
+    </section>
+
+    <section id="area-sucesso" class="cartao-secao sucesso" hidden>
+      <h2>✅ Pagamento aprovado!</h2>
+      <p>Obrigado pela compra. Número do pedido: <code id="pedido-numero"></code></p>
+    </section>
+  </main>
+
+  <script src="loja.js"></script>
+</body>
+</html>
