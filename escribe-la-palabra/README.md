@@ -36,7 +36,12 @@ No edites `index.html` a mano: se sobrescribe en cada build.
 - [ ] Reemplazar imágenes ilustrativas por capturas/fotos reales del producto:
       `assets/img/preview-cuaderno-*.webp` y `assets/img/bono-tarjetas-versiculos-*.webp`
       (mismos nombres, 800 px y 1400 px de ancho). Las tarjetas actuales tienen texto de relleno.
+- [ ] Video VSL: llena `vsl.src` en `src/content.js` y pon `vsl.showPlaceholder: false` (ver `MEDIA.md`).
 - [ ] Testimonios: `testimonials.enabled` está en `false`. Actívalo solo con testimonios reales y autorizados.
+
+## Imágenes y video
+
+Guía completa de producción (tamaños, nombres de archivo, guion del VSL): [`MEDIA.md`](MEDIA.md).
 
 ## Eventos de analítica
 
@@ -54,6 +59,7 @@ No edites `index.html` a mano: se sobrescribe en cada build.
 - **GTM**: si usas GTM para GA4 y el Píxel, deja `ga4Id` y `metaPixelId` vacíos y crea activadores de
   "Evento personalizado" con los nombres de la tabla.
 - Los parámetros UTM, `fbclid` y `gclid` se pasan automáticamente al checkout.
+- **VideoPlay**: se envía al tocar play en el VSL (evento personalizado en Meta, `video_start` en GA4).
 - **Lead**: el formulario solo aparece si configuras `leadForm.endpoint` (POST JSON `{ email, source }`).
 
 ## Ver en local

@@ -55,7 +55,7 @@ export const Document = ({ title, description, path = "", body, page, robots = "
   <meta name="description" content="${description}">
   <meta name="robots" content="${robots}">
   <link rel="canonical" href="${abs(path)}">
-  <meta name="theme-color" content="#FBF7EF">
+  <meta name="theme-color" content="#FFF8EC">
 
   <meta property="og:type" content="product">
   <meta property="og:locale" content="${site.locale}">
@@ -68,7 +68,7 @@ export const Document = ({ title, description, path = "", body, page, robots = "
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231B355C'/%3E%3Cpath d='M9 23l11-11 3 3-11 11H9z' fill='%23D9B45A'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&family=Andika&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@700&family=Andika&display=swap">
   ${preload}
   <link rel="stylesheet" href="assets/css/styles.css">
 

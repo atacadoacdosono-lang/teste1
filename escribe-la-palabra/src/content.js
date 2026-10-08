@@ -13,12 +13,13 @@ export const content = {
 
   hero: {
     eyebrow: "Caligrafía bíblica · Niños de 6 a 10 años",
-    title: "Ayuda a tu hijo a mejorar su escritura mientras aprende la Palabra de Dios.",
+    title: 'Ayuda a tu hijo a <mark class="hl hl--yellow">mejorar su escritura</mark> mientras aprende <span class="scribble">la Palabra de Dios.</span>',
     subtitle:
       "Un programa de 12 semanas que combina caligrafía, escritura bíblica, memorización y reflexión en una actividad sencilla de solo 15 minutos al día.",
     cta: { label: "QUIERO ESCRIBIR LA PALABRA", target: "offer" },
     microcopy: "Pago único de MX$149 · Acceso digital inmediato",
     chips: ["PDF imprimible", "15 min al día", "12 semanas", "Sin pantallas"],
+    stickers: ["¡Solo 15 min al día!", "PDF imprimible"],
     image: {
       base: "assets/img/familia-escribiendo", // usa -800.webp y -1400.webp
       width: 1400,
@@ -27,9 +28,31 @@ export const content = {
     },
   },
 
+  // VSL (video de ventas). Aparece en el hero en lugar de la foto.
+  //   type: "youtube" (src = ID del video), "vimeo" (src = ID) o "mp4" (src = ruta/URL del archivo .mp4)
+  //   Si src está vacío y showPlaceholder es true, se muestra un marcador "Tu video aquí" (solo para revisión).
+  //   Antes de publicar: llena src o pon showPlaceholder en false (entonces se muestra la foto del hero).
+  vsl: {
+    type: "youtube",
+    src: "",
+    showPlaceholder: true,
+    poster: "assets/img/familia-escribiendo", // portada del video (-800.webp / -1400.webp), ideal 16:9
+    badge: "Mira cómo funciona · 2 min",
+    playLabel: "Reproducir video",
+    placeholder: "Aquí va tu video de ventas (VSL)",
+  },
+
+  marquee: ["LEE", "TRAZA", "COPIA", "ESCRIBE", "RECUERDA", "15 MINUTOS AL DÍA", "12 SEMANAS"],
+
   problem: {
     eyebrow: "El reto",
-    title: "Tu hijo necesita practicar su letra. Tú quieres que ese tiempo valga la pena.",
+    title: 'Tu hijo necesita practicar su letra. Tú quieres que ese tiempo <mark class="hl hl--coral">valga la pena</mark>.',
+    image: {
+      base: "assets/img/familia-escribiendo",
+      width: 1400,
+      height: 781,
+      alt: "Niño escribiendo en la mesa del comedor acompañado por su mamá",
+    },
     paragraphs: [
       "La escritura a mano mejora con práctica constante: trazar, copiar y volver a escribir. Pero las planas repetitivas aburren rápido, y muchos niños terminan dejándolas a medias.",
       "Al mismo tiempo, encontrar actividades <strong>sin pantallas</strong> que sean fáciles de preparar, que tengan un propósito y que transmitan valores no siempre es sencillo, sobre todo con el poco tiempo que deja el día.",
@@ -46,7 +69,7 @@ export const content = {
 
   mechanism: {
     eyebrow: "Cómo funciona",
-    title: "Un método sencillo: 5 pasos, 15 minutos al día",
+    title: 'Un método sencillo: <mark class="hl hl--yellow">5 pasos</mark>, 15 minutos al día',
     subtitle: "Cada semana tu hijo avanza poco a poco, del trazo guiado a la escritura independiente.",
     steps: [
       { word: "LEE", icon: "book", text: "Lee el versículo del día en voz alta, solo o acompañado." },
@@ -96,7 +119,8 @@ export const content = {
 
   bonuses: {
     eyebrow: "Bonos incluidos",
-    title: "Además, recibes 5 bonos",
+    title: 'Además, recibes <mark class="hl hl--yellow">5 bonos</mark>',
+    sticker: "+5 BONOS",
     // Imagen ilustrativa: REEMPLAZAR por foto real de las tarjetas.
     image: {
       base: "assets/img/bono-tarjetas-versiculos",

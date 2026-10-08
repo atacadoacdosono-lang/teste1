@@ -43,7 +43,8 @@ const home = Document({
   preload: `<link rel="preload" as="image" href="${heroImg}-1400.webp" imagesrcset="${heroImg}-800.webp 800w, ${heroImg}-1400.webp 1400w" imagesizes="(min-width: 960px) 50vw, 100vw" fetchpriority="high">`,
   body: `
   <main>
-    ${UI.Hero(c.hero)}
+    ${UI.Hero(c.hero, c.vsl)}
+    ${UI.Marquee(c.marquee)}
     ${UI.Problem(c.problem)}
     ${UI.Mechanism(c.mechanism)}
     ${UI.Preview(c.preview)}

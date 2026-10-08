@@ -115,6 +115,37 @@
     hideZones.forEach(function (z) { zoneObserver.observe(z); });
   }
 
+  // ── VSL: carga el video solo al hacer clic (página más rápida) ──
+  var vsl = document.querySelector("[data-vsl]");
+  if (vsl && vsl.getAttribute("data-src")) {
+    vsl.querySelector(".vsl__play").addEventListener("click", function () {
+      var type = vsl.getAttribute("data-type");
+      var src = vsl.getAttribute("data-src");
+      var player;
+      if (type === "mp4") {
+        player = document.createElement("video");
+        player.src = src;
+        player.controls = true;
+        player.autoplay = true;
+        player.playsInline = true;
+      } else {
+        player = document.createElement("iframe");
+        player.src =
+          type === "vimeo"
+            ? "https://player.vimeo.com/video/" + encodeURIComponent(src) + "?autoplay=1&title=0&byline=0&portrait=0"
+            : "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(src) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+        player.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        player.allowFullscreen = true;
+        player.title = "Video";
+      }
+      vsl.innerHTML = "";
+      vsl.appendChild(player);
+      window.dataLayer.push({ event: "VideoPlay", video_src: src });
+      try { if (typeof window.fbq === "function") window.fbq("trackCustom", "VideoPlay"); } catch (e) {}
+      try { if (typeof window.gtag === "function") window.gtag("event", "video_start", { video_url: src }); } catch (e) {}
+    });
+  }
+
   // ── FAQ: una pregunta abierta a la vez ───────────────────
   var faqItems = document.querySelectorAll(".faq__item");
   faqItems.forEach(function (d) {
