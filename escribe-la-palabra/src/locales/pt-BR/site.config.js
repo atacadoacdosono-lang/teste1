@@ -22,7 +22,7 @@ export const site = {
     id: "escreva-a-palavra-salmos", // content_ids / item_id nos eventos
     name: "Escreva a Palavra — Salmos",
     category: "Produto digital / Material educativo para imprimir",
-    price: 47, // PROVISÓRIO: defina o preço real
+    price: 37.9,
     currency: "BRL",
   },
 

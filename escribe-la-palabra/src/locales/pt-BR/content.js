@@ -7,7 +7,6 @@
 //   "checkout" → vai para a página de pagamento e dispara InitiateCheckout
 //   "offer"    → desce até a seção da oferta (#oferta)
 //
-// ATENÇÃO: o preço R$ 47 é PROVISÓRIO. Defina o preço real aqui e em site.config.js (product.price).
 // ─────────────────────────────────────────────────────────────
 
 const IMG = "../assets/img"; // as páginas do Brasil ficam em /br/, as imagens em /assets/
@@ -21,7 +20,7 @@ export const content = {
     subtitle:
       "Um programa de 12 semanas que une caligrafia, escrita bíblica, memorização e reflexão em uma atividade simples de apenas 15 minutos por dia.",
     cta: { label: "QUERO ESCREVER A PALAVRA", target: "offer" },
-    microcopy: "Pagamento único de R$ 47 · Acesso digital imediato",
+    microcopy: "Pagamento único de R$ 37,90 · Acesso digital imediato",
     chips: ["PDF para imprimir", "15 min por dia", "12 semanas", "Sem telas"],
     stickers: ["Só 15 min por dia!", "PDF para imprimir"],
     // Faixa que aparece quando a pessoa chega pelo quiz. {hijo} e {edad} são substituídos.
@@ -184,7 +183,7 @@ export const content = {
       "Certificado de conclusão",
     ],
     priceLabel: "Preço de lançamento",
-    price: "R$ 47",
+    price: "R$ 37,90",
     priceNote: "Pagamento único · Sem mensalidade · Acesso digital imediato",
     cta: { label: "QUERO COMEÇAR AGORA", target: "checkout" },
     secureNote: "O pagamento é processado em uma plataforma de pagamento segura.", // PROVISÓRIO: cite a plataforma real
@@ -250,12 +249,12 @@ export const content = {
 
   finalCta: {
     title: "Alguns minutos hoje. Uma prática que pode acompanhá-lo por muito tempo.",
-    text: "Escreva a Palavra — Salmos · 12 semanas · PDF para imprimir · R$ 47 pagamento único",
+    text: "Escreva a Palavra — Salmos · 12 semanas · PDF para imprimir · R$ 37,90 pagamento único",
     cta: { label: "QUERO COMEÇAR AGORA", target: "checkout" },
   },
 
   sticky: {
-    cta: { label: "QUERO COMEÇAR — R$ 47", target: "checkout" },
+    cta: { label: "QUERO COMEÇAR — R$ 37,90", target: "checkout" },
   },
 
   footer: {

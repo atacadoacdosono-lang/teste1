@@ -173,7 +173,7 @@ export const quiz = {
     main: {
       product: "salmos",
       cta: "VER MEU PLANO RECOMENDADO",
-      secondary: "Ir direto para o pagamento — R$ 47",
+      secondary: "Ir direto para o pagamento — R$ 37,90",
     },
 
     routeNotes: {
@@ -188,7 +188,7 @@ export const quiz = {
 
   // Ecossistema / esteira de produtos. Os itens "soon" são EXEMPLOS: edite ou remova.
   products: {
-    salmos: { name: "Escreva a Palavra — Salmos", status: "available", url: "salmos.html", price: "R$ 47" },
+    salmos: { name: "Escreva a Palavra — Salmos", status: "available", url: "salmos.html", price: "R$ 37,90" },
     primerosTrazos: { name: "Primeiros Traços (4 a 5 anos)", status: "soon" },
     proverbios: { name: "Escreva a Palavra — Provérbios (11+ anos)", status: "soon" },
     grupos: { name: "Licença para escolas e igrejas", status: "soon" },
